@@ -248,7 +248,7 @@
             submitBtn.disabled = true;
 
             // Gửi dữ liệu đi
-            fetch(scriptURL, { method: 'POST', body: new FormData(form), mode: 'no-cors' })
+            fetch(scriptURL, { method: 'POST', body: new URLSearchParams(new FormData(form)), mode: 'no-cors' })
                 .then(() => {
                     // Hiển thị popup thành công
                     modal.style.display = 'flex';
