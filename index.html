@@ -3,182 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng ký lớp bồi dưỡng Tin học - Thầy Định</title>
-    <!-- Tích hợp Google Font 'Nunito' cho nét chữ tròn trịa, hiện đại -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-    
+    <title>Đăng ký lớp bồi dưỡng Tin học</title>
     <style>
-        :root {
-            --primary-color: #4F46E5; /* Xanh tím hiện đại */
-            --primary-hover: #4338CA;
-            --bg-gradient: linear-gradient(135deg, #E0E7FF 0%, #C7D2FE 100%);
-            --text-main: #1F2937;
-            --text-muted: #6B7280;
-        }
-
         body {
-            font-family: 'Nunito', sans-serif;
-            background: var(--bg-gradient);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f8ff;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
         }
-
-        .form-wrapper {
-            background: #ffffff;
-            width: 100%;
-            max-width: 450px;
-            padding: 40px 32px;
-            border-radius: 24px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        .form-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 90%;
+            border-top: 6px solid #0056b3;
         }
-
-        .header-section {
+        h2 {
             text-align: center;
-            margin-bottom: 32px;
+            color: #0056b3;
+            margin-top: 0;
+            margin-bottom: 24px;
+            font-size: 22px;
+            line-height: 1.4;
         }
-
-        .header-section h2 {
-            color: var(--primary-color);
-            font-size: 24px;
-            font-weight: 800;
-            margin: 0 0 8px 0;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        .form-group {
+            margin-bottom: 16px;
         }
-
-        .header-section p {
-            color: var(--text-muted);
-            font-size: 15px;
-            margin: 0;
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-        }
-
-        .input-group label {
+        label {
             display: block;
-            font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #333;
             font-size: 14px;
         }
-
-        .input-field {
+        input[type="text"], 
+        input[type="tel"], 
+        select {
             width: 100%;
-            padding: 14px 16px;
-            background-color: #F9FAFB;
-            border: 2px solid #E5E7EB;
-            border-radius: 12px;
-            font-size: 15px;
-            font-family: inherit;
-            color: var(--text-main);
-            transition: all 0.3s ease;
+            padding: 10px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
             box-sizing: border-box;
+            font-size: 14px;
+            transition: all 0.3s ease;
         }
-
-        .input-field:focus {
+        input[type="text"]:focus, 
+        input[type="tel"]:focus, 
+        select:focus {
+            border-color: #ff7f50;
             outline: none;
-            border-color: var(--primary-color);
-            background-color: #ffffff;
-            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.15);
+            box-shadow: 0 0 0 3px rgba(255, 127, 80, 0.2);
         }
-
-        /* Tùy chỉnh icon mũi tên cho thẻ Select */
-        select.input-field {
-            cursor: pointer;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 16px center;
-            background-size: 16px;
-        }
-
-        .submit-btn {
+        .btn-submit {
             width: 100%;
-            padding: 16px;
-            background: var(--primary-color);
-            color: #ffffff;
+            background-color: #ff7f50;
+            color: white;
+            padding: 12px;
             border: none;
-            border-radius: 12px;
+            border-radius: 8px;
             font-size: 16px;
-            font-weight: 800;
+            font-weight: bold;
             cursor: pointer;
-            transition: all 0.2s ease;
-            margin-top: 8px;
-            box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.3);
+            transition: background-color 0.3s;
+            margin-top: 10px;
         }
-
-        .submit-btn:hover {
-            background: var(--primary-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px -2px rgba(79, 70, 229, 0.4);
+        .btn-submit:hover {
+            background-color: #e0693c;
         }
-
-        .submit-btn:active {
-            transform: translateY(0);
-        }
-
-        .footer-note {
+        .note {
+            font-size: 12px;
+            color: #64748b;
             text-align: center;
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-top: 24px;
-            font-weight: 600;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
-    <div class="form-wrapper">
-        <div class="header-section">
-            <h2>ĐĂNG KÝ LỚP TIN HỌC</h2>
-            <p>Nâng cao kỹ năng máy tính & tư duy logic</p>
-        </div>
+    <div class="form-container">
+        <h2>ĐĂNG KÝ LỚP BỒI DƯỠNG TIN HỌC KHỐI 4</h2>
         
-        <!-- Nhớ thay YOUR_ENDPOINT_URL bằng link Formspree hoặc Google Apps Script -->
+        <!-- Thay YOUR_ENDPOINT_URL bằng link Formspree hoặc Google Apps Script -->
         <form action="https://script.google.com/macros/s/AKfycbxseGnKDEhsm8Q3pVlfrlIZ5cU3wkSudycIiiipfXcYYPc-CPD0srNPJixCfGzzzLrNIw/exec" method="POST">
             
-            <div class="input-group">
-                <label for="studentName">Họ và tên học sinh</label>
-                <input type="text" id="studentName" name="Họ và tên HS" class="input-field" required placeholder="Nhập họ tên đầy đủ của bé">
+            <div class="form-group">
+                <label for="studentName">Họ và tên học sinh:</label>
+                <input type="text" id="studentName" name="Họ và tên HS" required placeholder="Ví dụ: Nguyễn Văn A">
             </div>
 
-            <div class="input-group">
-                <label for="className">Lớp</label>
-                <input type="text" id="className" name="Lớp" class="input-field" required placeholder="Ví dụ: 4/1, 5/2...">
+            <div class="form-group">
+                <label for="className">Lớp:</label>
+                <input type="text" id="className" name="Lớp" required placeholder="Ví dụ: 4/1">
             </div>
 
-            <div class="input-group">
-                <label for="parentName">Họ tên Phụ huynh</label>
-                <input type="text" id="parentName" name="Họ tên PH" class="input-field" required placeholder="Người liên hệ chính">
+            <div class="form-group">
+                <label for="parentName">Họ tên Phụ huynh:</label>
+                <input type="text" id="parentName" name="Họ tên PH" required placeholder="Nhập họ tên phụ huynh">
             </div>
 
-            <div class="input-group">
-                <label for="phone">Số điện thoại / Zalo</label>
-                <input type="tel" id="phone" name="Số điện thoại" class="input-field" required placeholder="Nhập số điện thoại liên hệ">
+            <div class="form-group">
+                <label for="phone">Số điện thoại / Zalo:</label>
+                <input type="tel" id="phone" name="Số điện thoại" required placeholder="Nhập số điện thoại liên hệ">
             </div>
 
-            <div class="input-group">
-                <label for="laptop">Tình trạng Laptop cá nhân</label>
-                <select id="laptop" name="Laptop" class="input-field" required>
-                    <option value="" disabled selected>-- Vui lòng chọn tình trạng --</option>
+            <div class="form-group">
+                <label for="laptop">Tình trạng Laptop cá nhân:</label>
+                <select id="laptop" name="Laptop" required>
+                    <option value="" disabled selected>-- Vui lòng chọn --</option>
                     <option value="Đã có sẵn">Bé đã có sẵn laptop mang theo</option>
                     <option value="Sẽ trang bị">Gia đình sẽ chuẩn bị khi vào học</option>
                 </select>
             </div>
 
-            <button type="submit" class="submit-btn">GỬI THÔNG TIN ĐĂNG KÝ</button>
+            <button type="submit" class="btn-submit">GỬI ĐĂNG KÝ</button>
         </form>
         
-        <div class="footer-note">
-            🛡️ Dữ liệu được bảo mật và gửi trực tiếp cho Thầy Định.
-        </div>
+        <p class="note">Thông tin được bảo mật và chỉ dùng để liên hệ sắp xếp lớp học.</p>
     </div>
 
 </body>
