@@ -21,22 +21,19 @@
         .header-section p { color: var(--text-muted); font-size: 15px; margin: 0; }
         .input-group { margin-bottom: 20px; }
         .input-group label { display: block; font-weight: 700; color: var(--text-main); margin-bottom: 8px; font-size: 14px; }
-        .input-field { width: 100%; padding: 14px 16px; background-color: #F9FAFB; border: 2px solid #E5E7EB; border-radius: 12px; font-size: 15px; font-family: inherit; color: var(--text-main); transition: all 0.3s ease; box-sizing: border-box; }
+        .input-field { width: 100%; padding: 14px 16px; background-color: #F9FAFB; border: 2px solid #E5E7EB; border-radius: 12px; font-size: 15px; font-family: inherit; color: var(--text-main); box-sizing: border-box; }
         .input-field:focus { outline: none; border-color: var(--primary-color); background-color: #ffffff; }
-        select.input-field { cursor: pointer; }
         .submit-btn { width: 100%; padding: 16px; background: var(--primary-color); color: #ffffff; border: none; border-radius: 12px; font-size: 16px; font-weight: 800; cursor: pointer; transition: all 0.2s ease; margin-top: 8px; }
         .submit-btn:disabled { background: #9CA3AF; cursor: not-allowed; }
         .submit-btn:not(:disabled):hover { background: var(--primary-hover); transform: translateY(-2px); }
         .footer-note { text-align: center; font-size: 13px; color: var(--text-muted); margin-top: 24px; font-weight: 600; }
 
         /* Giao diện Popup */
-        .modal-overlay { display: none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255, 255, 255, 0.95); border-radius: 24px; z-index: 10; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 30px; animation: fadeIn 0.3s ease; }
+        .modal-overlay { display: none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255, 255, 255, 0.95); border-radius: 24px; z-index: 10; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 30px; }
         .modal-icon { font-size: 60px; margin-bottom: 16px; }
         .modal-title { color: #10B981; font-size: 22px; font-weight: 800; margin: 0 0 10px 0; }
         .modal-text { color: var(--text-muted); font-size: 15px; margin-bottom: 24px; }
         .btn-close { padding: 10px 24px; background: #F3F4F6; color: var(--text-main); border: none; border-radius: 8px; font-weight: 700; cursor: pointer; }
-        .btn-close:hover { background: #E5E7EB; }
-        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
     </style>
 </head>
 <body>
@@ -47,50 +44,36 @@
             <p>Nâng cao kỹ năng máy tính & tư duy logic</p>
         </div>
         
-        <!-- THỦ THUẬT: KHUNG ẨN (IFRAME) ĐỂ CHẶN CHUYỂN TRANG -->
-        <script>var submitted = false;</script>
-        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){ document.getElementById('successModal').style.display='flex'; document.getElementById('registerForm').reset(); document.getElementById('submitBtn').innerText='GỬI THÔNG TIN ĐĂNG KÝ'; document.getElementById('submitBtn').disabled=false; }"></iframe>
-        
-        <!-- THẦY DÁN LINK GOOGLE APPS SCRIPT VÀO DÒNG DƯỚI ĐÂY (THAY CHỮ YOUR_ENDPOINT_URL) -->
-        <form id="registerForm" action="https://script.google.com/macros/s/AKfycbxseGnKDEhsm8Q3pVlfrlIZ5cU3wkSudycIiiipfXcYYPc-CPD0srNPJixCfGzzzLrNIw/exec" method="POST" target="hidden_iframe" onsubmit="submitted=true; document.getElementById('submitBtn').innerText='Đang gửi...'; document.getElementById('submitBtn').disabled=true;">
-            
+        <form id="registerForm">
             <div class="input-group">
-                <label for="studentName">Họ và tên học sinh</label>
-                <input type="text" id="studentName" name="Họ và tên HS" class="input-field" required placeholder="Nhập họ tên đầy đủ của bé">
+                <label>Họ và tên học sinh</label>
+                <input type="text" name="Họ và tên HS" class="input-field" required>
             </div>
-
             <div class="input-group">
-                <label for="className">Lớp</label>
-                <input type="text" id="className" name="Lớp" class="input-field" required placeholder="Ví dụ: 4/1, 5/2...">
+                <label>Lớp</label>
+                <input type="text" name="Lớp" class="input-field" required>
             </div>
-
             <div class="input-group">
-                <label for="parentName">Họ tên Phụ huynh</label>
-                <input type="text" id="parentName" name="Họ tên PH" class="input-field" required placeholder="Người liên hệ chính">
+                <label>Họ tên Phụ huynh</label>
+                <input type="text" name="Họ tên PH" class="input-field" required>
             </div>
-
             <div class="input-group">
-                <label for="phone">Số điện thoại / Zalo</label>
-                <input type="tel" id="phone" name="Số điện thoại" class="input-field" required placeholder="Nhập số điện thoại liên hệ">
+                <label>Số điện thoại / Zalo</label>
+                <input type="tel" name="Số điện thoại" class="input-field" required>
             </div>
-
             <div class="input-group">
-                <label for="laptop">Tình trạng Laptop cá nhân</label>
-                <select id="laptop" name="Laptop" class="input-field" required>
+                <label>Tình trạng Laptop cá nhân</label>
+                <select name="Laptop" class="input-field" required>
                     <option value="" disabled selected>-- Vui lòng chọn tình trạng --</option>
                     <option value="Đã có sẵn">Bé đã có sẵn laptop mang theo</option>
                     <option value="Sẽ trang bị">Gia đình sẽ chuẩn bị khi vào học</option>
                 </select>
             </div>
-
             <button type="submit" class="submit-btn" id="submitBtn">GỬI THÔNG TIN ĐĂNG KÝ</button>
         </form>
         
-        <div class="footer-note">
-            🛡️ Dữ liệu được bảo mật và gửi trực tiếp cho Thầy Định.
-        </div>
+        <div class="footer-note">🛡️ Dữ liệu được bảo mật và gửi trực tiếp cho Thầy Định.</div>
 
-        <!-- Bảng thông báo thành công (Popup) -->
         <div class="modal-overlay" id="successModal">
             <div class="modal-icon">🎉</div>
             <h3 class="modal-title">Đăng ký thành công!</h3>
@@ -99,5 +82,39 @@
         </div>
     </div>
 
+    <script>
+        const form = document.getElementById('registerForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const modal = document.getElementById('successModal');
+
+        // THẦY DÁN LINK GOOGLE APPS SCRIPT VÀO ĐÂY (thay chữ YOUR_ENDPOINT_URL)
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxseGnKDEhsm8Q3pVlfrlIZ5cU3wkSudycIiiipfXcYYPc-CPD0srNPJixCfGzzzLrNIw/exec';
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            submitBtn.innerText = 'Đang gửi dữ liệu...';
+            submitBtn.disabled = true;
+
+            // BÍ QUYẾT Ở ĐÂY: Đóng gói dữ liệu sang chuẩn URL-encoded để Google Sheets đọc được
+            const data = new URLSearchParams(new FormData(form));
+
+            fetch(scriptURL, {
+                method: 'POST',
+                body: data,
+                mode: 'no-cors' // Bỏ qua chặn bảo mật của trình duyệt
+            })
+            .then(res => {
+                modal.style.display = 'flex';
+                form.reset();
+                submitBtn.innerText = 'GỬI THÔNG TIN ĐĂNG KÝ';
+                submitBtn.disabled = false;
+            })
+            .catch(error => {
+                alert('Có lỗi mạng, vui lòng thử lại!');
+                submitBtn.innerText = 'GỬI THÔNG TIN ĐĂNG KÝ';
+                submitBtn.disabled = false;
+            });
+        });
+    </script>
 </body>
 </html>
