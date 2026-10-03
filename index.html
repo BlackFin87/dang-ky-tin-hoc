@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký lớp bồi dưỡng Tin học - Thầy Định</title>
+    <!-- Tích hợp Google Font 'Nunito' cho nét chữ tròn trịa, hiện đại -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #4F46E5; /* Xanh tím hiện đại */
+            --primary-hover: #4338CA;
+            --bg-gradient: linear-gradient(135deg, #E0E7FF 0%, #C7D2FE 100%);
+            --text-main: #1F2937;
+            --text-muted: #6B7280;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--bg-gradient);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .form-wrapper {
+            background: #ffffff;
+            width: 100%;
+            max-width: 450px;
+            padding: 40px 32px;
+            border-radius: 24px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .header-section h2 {
+            color: var(--primary-color);
+            font-size: 24px;
+            font-weight: 800;
+            margin: 0 0 8px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .header-section p {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin: 0;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 14px 16px;
+            background-color: #F9FAFB;
+            border: 2px solid #E5E7EB;
+            border-radius: 12px;
+            font-size: 15px;
+            font-family: inherit;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background-color: #ffffff;
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.15);
+        }
+
+        /* Tùy chỉnh icon mũi tên cho thẻ Select */
+        select.input-field {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 16px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary-color);
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 8px;
+            box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.3);
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px -2px rgba(79, 70, 229, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 24px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-wrapper">
+        <div class="header-section">
+            <h2>ĐĂNG KÝ LỚP TIN HỌC</h2>
+            <p>Nâng cao kỹ năng máy tính & tư duy logic</p>
+        </div>
+        
+        <!-- Nhớ thay YOUR_ENDPOINT_URL bằng link Formspree hoặc Google Apps Script -->
+        <form action="https://script.google.com/macros/s/AKfycbxseGnKDEhsm8Q3pVlfrlIZ5cU3wkSudycIiiipfXcYYPc-CPD0srNPJixCfGzzzLrNIw/exec" method="POST">
+            
+            <div class="input-group">
+                <label for="studentName">Họ và tên học sinh</label>
+                <input type="text" id="studentName" name="Họ và tên HS" class="input-field" required placeholder="Nhập họ tên đầy đủ của bé">
+            </div>
+
+            <div class="input-group">
+                <label for="className">Lớp</label>
+                <input type="text" id="className" name="Lớp" class="input-field" required placeholder="Ví dụ: 4/1, 5/2...">
+            </div>
+
+            <div class="input-group">
+                <label for="parentName">Họ tên Phụ huynh</label>
+                <input type="text" id="parentName" name="Họ tên PH" class="input-field" required placeholder="Người liên hệ chính">
+            </div>
+
+            <div class="input-group">
+                <label for="phone">Số điện thoại / Zalo</label>
+                <input type="tel" id="phone" name="Số điện thoại" class="input-field" required placeholder="Nhập số điện thoại liên hệ">
+            </div>
+
+            <div class="input-group">
+                <label for="laptop">Tình trạng Laptop cá nhân</label>
+                <select id="laptop" name="Laptop" class="input-field" required>
+                    <option value="" disabled selected>-- Vui lòng chọn tình trạng --</option>
+                    <option value="Đã có sẵn">Bé đã có sẵn laptop mang theo</option>
+                    <option value="Sẽ trang bị">Gia đình sẽ chuẩn bị khi vào học</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn">GỬI THÔNG TIN ĐĂNG KÝ</button>
+        </form>
+        
+        <div class="footer-note">
+            🛡️ Dữ liệu được bảo mật và gửi trực tiếp cho Thầy Định.
+        </div>
+    </div>
+
+</body>
+</html>
