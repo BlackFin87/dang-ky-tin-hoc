@@ -14,167 +14,29 @@
             --text-main: #1F2937;
             --text-muted: #6B7280;
         }
+        body { font-family: 'Nunito', sans-serif; background: var(--bg-gradient); display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; box-sizing: border-box; }
+        .form-wrapper { background: #ffffff; width: 100%; max-width: 450px; padding: 40px 32px; border-radius: 24px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); position: relative; }
+        .header-section { text-align: center; margin-bottom: 32px; }
+        .header-section h2 { color: var(--primary-color); font-size: 24px; font-weight: 800; margin: 0 0 8px 0; text-transform: uppercase; }
+        .header-section p { color: var(--text-muted); font-size: 15px; margin: 0; }
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; font-weight: 700; color: var(--text-main); margin-bottom: 8px; font-size: 14px; }
+        .input-field { width: 100%; padding: 14px 16px; background-color: #F9FAFB; border: 2px solid #E5E7EB; border-radius: 12px; font-size: 15px; font-family: inherit; color: var(--text-main); transition: all 0.3s ease; box-sizing: border-box; }
+        .input-field:focus { outline: none; border-color: var(--primary-color); background-color: #ffffff; }
+        select.input-field { cursor: pointer; }
+        .submit-btn { width: 100%; padding: 16px; background: var(--primary-color); color: #ffffff; border: none; border-radius: 12px; font-size: 16px; font-weight: 800; cursor: pointer; transition: all 0.2s ease; margin-top: 8px; }
+        .submit-btn:disabled { background: #9CA3AF; cursor: not-allowed; }
+        .submit-btn:not(:disabled):hover { background: var(--primary-hover); transform: translateY(-2px); }
+        .footer-note { text-align: center; font-size: 13px; color: var(--text-muted); margin-top: 24px; font-weight: 600; }
 
-        body {
-            font-family: 'Nunito', sans-serif;
-            background: var(--bg-gradient);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .form-wrapper {
-            background: #ffffff;
-            width: 100%;
-            max-width: 450px;
-            padding: 40px 32px;
-            border-radius: 24px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-
-        .header-section {
-            text-align: center;
-            margin-bottom: 32px;
-        }
-
-        .header-section h2 {
-            color: var(--primary-color);
-            font-size: 24px;
-            font-weight: 800;
-            margin: 0 0 8px 0;
-            text-transform: uppercase;
-        }
-
-        .header-section p {
-            color: var(--text-muted);
-            font-size: 15px;
-            margin: 0;
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-        }
-
-        .input-group label {
-            display: block;
-            font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 8px;
-            font-size: 14px;
-        }
-
-        .input-field {
-            width: 100%;
-            padding: 14px 16px;
-            background-color: #F9FAFB;
-            border: 2px solid #E5E7EB;
-            border-radius: 12px;
-            font-size: 15px;
-            font-family: inherit;
-            color: var(--text-main);
-            transition: all 0.3s ease;
-            box-sizing: border-box;
-        }
-
-        .input-field:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            background-color: #ffffff;
-        }
-
-        select.input-field {
-            cursor: pointer;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 16px;
-            background: var(--primary-color);
-            color: #ffffff;
-            border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 800;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            margin-top: 8px;
-        }
-
-        .submit-btn:disabled {
-            background: #9CA3AF;
-            cursor: not-allowed;
-        }
-
-        .submit-btn:not(:disabled):hover {
-            background: var(--primary-hover);
-            transform: translateY(-2px);
-        }
-
-        .footer-note {
-            text-align: center;
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-top: 24px;
-            font-weight: 600;
-        }
-
-        /* Giao diện Popup thông báo thành công */
-        .modal-overlay {
-            display: none;
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 24px;
-            z-index: 10;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 30px;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .modal-icon {
-            font-size: 60px;
-            margin-bottom: 16px;
-        }
-
-        .modal-title {
-            color: #10B981;
-            font-size: 22px;
-            font-weight: 800;
-            margin: 0 0 10px 0;
-        }
-
-        .modal-text {
-            color: var(--text-muted);
-            font-size: 15px;
-            margin-bottom: 24px;
-        }
-
-        .btn-close {
-            padding: 10px 24px;
-            background: #F3F4F6;
-            color: var(--text-main);
-            border: none;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .btn-close:hover {
-            background: #E5E7EB;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
+        /* Giao diện Popup */
+        .modal-overlay { display: none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255, 255, 255, 0.95); border-radius: 24px; z-index: 10; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 30px; animation: fadeIn 0.3s ease; }
+        .modal-icon { font-size: 60px; margin-bottom: 16px; }
+        .modal-title { color: #10B981; font-size: 22px; font-weight: 800; margin: 0 0 10px 0; }
+        .modal-text { color: var(--text-muted); font-size: 15px; margin-bottom: 24px; }
+        .btn-close { padding: 10px 24px; background: #F3F4F6; color: var(--text-main); border: none; border-radius: 8px; font-weight: 700; cursor: pointer; }
+        .btn-close:hover { background: #E5E7EB; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
     </style>
 </head>
 <body>
@@ -185,7 +47,13 @@
             <p>Nâng cao kỹ năng máy tính & tư duy logic</p>
         </div>
         
-        <form id="registerForm">
+        <!-- THỦ THUẬT: KHUNG ẨN (IFRAME) ĐỂ CHẶN CHUYỂN TRANG -->
+        <script>var submitted = false;</script>
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){ document.getElementById('successModal').style.display='flex'; document.getElementById('registerForm').reset(); document.getElementById('submitBtn').innerText='GỬI THÔNG TIN ĐĂNG KÝ'; document.getElementById('submitBtn').disabled=false; }"></iframe>
+        
+        <!-- THẦY DÁN LINK GOOGLE APPS SCRIPT VÀO DÒNG DƯỚI ĐÂY (THAY CHỮ YOUR_ENDPOINT_URL) -->
+        <form id="registerForm" action="https://script.google.com/macros/s/AKfycbxseGnKDEhsm8Q3pVlfrlIZ5cU3wkSudycIiiipfXcYYPc-CPD0srNPJixCfGzzzLrNIw/exec" method="POST" target="hidden_iframe" onsubmit="submitted=true; document.getElementById('submitBtn').innerText='Đang gửi...'; document.getElementById('submitBtn').disabled=true;">
+            
             <div class="input-group">
                 <label for="studentName">Họ và tên học sinh</label>
                 <input type="text" id="studentName" name="Họ và tên HS" class="input-field" required placeholder="Nhập họ tên đầy đủ của bé">
@@ -227,46 +95,9 @@
             <div class="modal-icon">🎉</div>
             <h3 class="modal-title">Đăng ký thành công!</h3>
             <p class="modal-text">Thầy Định đã nhận được thông tin. Thầy sẽ sớm liên hệ lại với gia đình nhé.</p>
-            <button class="btn-close" onclick="closeModal()">Đóng lại</button>
+            <button class="btn-close" onclick="document.getElementById('successModal').style.display='none'">Đóng lại</button>
         </div>
     </div>
 
-    <!-- Script xử lý gửi dữ liệu ngầm -->
-    <script>
-        const form = document.getElementById('registerForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const modal = document.getElementById('successModal');
-
-        // THẦY DÁN LINK GOOGLE APPS SCRIPT VÀO ĐÂY (NẰM GIỮA 2 DẤU NGOẶC ĐƠN)
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxseGnKDEhsm8Q3pVlfrlIZ5cU3wkSudycIiiipfXcYYPc-CPD0srNPJixCfGzzzLrNIw/exec';
-
-        form.addEventListener('submit', e => {
-            e.preventDefault(); // Ngăn chặn hành vi nhảy trang mặc định
-            
-            // Đổi giao diện nút bấm
-            submitBtn.innerText = 'Đang gửi dữ liệu...';
-            submitBtn.disabled = true;
-
-            // Gửi dữ liệu đi
-            fetch(scriptURL, { method: 'POST', body: new URLSearchParams(new FormData(form)), mode: 'no-cors' })
-                .then(() => {
-                    // Hiển thị popup thành công
-                    modal.style.display = 'flex';
-                    // Đặt lại form và nút bấm
-                    form.reset();
-                    submitBtn.innerText = 'GỬI THÔNG TIN ĐĂNG KÝ';
-                    submitBtn.disabled = false;
-                })
-                .catch(error => {
-                    alert('Đường truyền bị lỗi, quý phụ huynh vui lòng thử lại sau ạ!');
-                    submitBtn.innerText = 'GỬI THÔNG TIN ĐĂNG KÝ';
-                    submitBtn.disabled = false;
-                });
-        });
-
-        function closeModal() {
-            modal.style.display = 'none';
-        }
-    </script>
 </body>
 </html>
