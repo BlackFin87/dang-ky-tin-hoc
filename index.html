@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng ký lớp bồi dưỡng Tin học - Thầy Định</title>
-    <!-- Tích hợp Google Font 'Nunito' cho nét chữ tròn trịa, hiện đại -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary-color: #4F46E5; /* Xanh tím hiện đại */
+            --primary-color: #4F46E5;
             --primary-hover: #4338CA;
             --bg-gradient: linear-gradient(135deg, #E0E7FF 0%, #C7D2FE 100%);
             --text-main: #1F2937;
@@ -34,7 +33,8 @@
             max-width: 450px;
             padding: 40px 32px;
             border-radius: 24px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
 
         .header-section {
@@ -48,7 +48,6 @@
             font-weight: 800;
             margin: 0 0 8px 0;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .header-section p {
@@ -86,17 +85,10 @@
             outline: none;
             border-color: var(--primary-color);
             background-color: #ffffff;
-            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.15);
         }
 
-        /* Tùy chỉnh icon mũi tên cho thẻ Select */
         select.input-field {
             cursor: pointer;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 16px center;
-            background-size: 16px;
         }
 
         .submit-btn {
@@ -111,17 +103,16 @@
             cursor: pointer;
             transition: all 0.2s ease;
             margin-top: 8px;
-            box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.3);
         }
 
-        .submit-btn:hover {
+        .submit-btn:disabled {
+            background: #9CA3AF;
+            cursor: not-allowed;
+        }
+
+        .submit-btn:not(:disabled):hover {
             background: var(--primary-hover);
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px -2px rgba(79, 70, 229, 0.4);
-        }
-
-        .submit-btn:active {
-            transform: translateY(0);
         }
 
         .footer-note {
@@ -130,6 +121,59 @@
             color: var(--text-muted);
             margin-top: 24px;
             font-weight: 600;
+        }
+
+        /* Giao diện Popup thông báo thành công */
+        .modal-overlay {
+            display: none;
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            z-index: 10;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-icon {
+            font-size: 60px;
+            margin-bottom: 16px;
+        }
+
+        .modal-title {
+            color: #10B981;
+            font-size: 22px;
+            font-weight: 800;
+            margin: 0 0 10px 0;
+        }
+
+        .modal-text {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 24px;
+        }
+
+        .btn-close {
+            padding: 10px 24px;
+            background: #F3F4F6;
+            color: var(--text-main);
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .btn-close:hover {
+            background: #E5E7EB;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
     </style>
 </head>
@@ -141,9 +185,7 @@
             <p>Nâng cao kỹ năng máy tính & tư duy logic</p>
         </div>
         
-        <!-- Nhớ thay YOUR_ENDPOINT_URL bằng link Formspree hoặc Google Apps Script -->
-        <form action="https://script.google.com/macros/s/AKfycbxseGnKDEhsm8Q3pVlfrlIZ5cU3wkSudycIiiipfXcYYPc-CPD0srNPJixCfGzzzLrNIw/exec" method="POST">
-            
+        <form id="registerForm">
             <div class="input-group">
                 <label for="studentName">Họ và tên học sinh</label>
                 <input type="text" id="studentName" name="Họ và tên HS" class="input-field" required placeholder="Nhập họ tên đầy đủ của bé">
@@ -173,13 +215,58 @@
                 </select>
             </div>
 
-            <button type="submit" class="submit-btn">GỬI THÔNG TIN ĐĂNG KÝ</button>
+            <button type="submit" class="submit-btn" id="submitBtn">GỬI THÔNG TIN ĐĂNG KÝ</button>
         </form>
         
         <div class="footer-note">
             🛡️ Dữ liệu được bảo mật và gửi trực tiếp cho Thầy Định.
         </div>
+
+        <!-- Bảng thông báo thành công (Popup) -->
+        <div class="modal-overlay" id="successModal">
+            <div class="modal-icon">🎉</div>
+            <h3 class="modal-title">Đăng ký thành công!</h3>
+            <p class="modal-text">Thầy Định đã nhận được thông tin. Thầy sẽ sớm liên hệ lại với gia đình nhé.</p>
+            <button class="btn-close" onclick="closeModal()">Đóng lại</button>
+        </div>
     </div>
 
+    <!-- Script xử lý gửi dữ liệu ngầm -->
+    <script>
+        const form = document.getElementById('registerForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const modal = document.getElementById('successModal');
+
+        // THẦY DÁN LINK GOOGLE APPS SCRIPT VÀO ĐÂY (NẰM GIỮA 2 DẤU NGOẶC ĐƠN)
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxseGnKDEhsm8Q3pVlfrlIZ5cU3wkSudycIiiipfXcYYPc-CPD0srNPJixCfGzzzLrNIw/exec';
+
+        form.addEventListener('submit', e => {
+            e.preventDefault(); // Ngăn chặn hành vi nhảy trang mặc định
+            
+            // Đổi giao diện nút bấm
+            submitBtn.innerText = 'Đang gửi dữ liệu...';
+            submitBtn.disabled = true;
+
+            // Gửi dữ liệu đi
+            fetch(scriptURL, { method: 'POST', body: new FormData(form), mode: 'no-cors' })
+                .then(() => {
+                    // Hiển thị popup thành công
+                    modal.style.display = 'flex';
+                    // Đặt lại form và nút bấm
+                    form.reset();
+                    submitBtn.innerText = 'GỬI THÔNG TIN ĐĂNG KÝ';
+                    submitBtn.disabled = false;
+                })
+                .catch(error => {
+                    alert('Đường truyền bị lỗi, quý phụ huynh vui lòng thử lại sau ạ!');
+                    submitBtn.innerText = 'GỬI THÔNG TIN ĐĂNG KÝ';
+                    submitBtn.disabled = false;
+                });
+        });
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+    </script>
 </body>
 </html>
